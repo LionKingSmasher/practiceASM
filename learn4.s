@@ -1,6 +1,7 @@
 
 .section .data
 	input: .space 20
+	integer_print: .asciz "%d\n"
 
 .section .bss
 	.macro SCAN_TEXT input
@@ -8,7 +9,7 @@
 		mov $0, %rdi
 		mov \input\(), %rsi
 		mov $20, %rdx
-		syscall
+		syscallm
 	.endm
 
 	.macro PRINT input_string
