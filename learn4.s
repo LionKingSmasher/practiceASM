@@ -9,7 +9,7 @@
 		mov $0, %rdi
 		mov \input\(), %rsi
 		mov $20, %rdx
-		syscallm
+		syscall
 	.endm
 
 	.macro PRINT input_string

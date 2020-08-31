@@ -1,24 +1,31 @@
-[org 0x7C00]
-[bits 16]
+org 0x7C00
 
-read:
-	mov ax, 0x1000
+mov ax, 0xB800
+mov es, ax
+mov bx, 0
+mov cx, 80*25*2
+CLS:
+	mov [es:bx], ax
+	add bx, 1
+	loop CLS
+
+READ:
+	mov ax, 0x0800
 	mov es, ax
 	mov bx, 0
-
 	mov ah, 2
 	mov al, 1
 	mov ch, 0
 	mov cl, 2
 	mov dh, 0
-	mov dl, 0
-	int 13h
+	mov dl, 0x80
 
-	jc read
+	int 0x13
+	jc READ
 
-jmp 0x1000:0
+jmp 0x8000
 
-jmp $
+Backgound db 0x00
 
 times 510-($-$$) db 0
 dw 0xAA55
