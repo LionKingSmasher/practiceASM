@@ -1,4 +1,4 @@
-
+ 
 .section .data
 	input: .space 20
 	integer_print: .asciz "%d\n"

@@ -6,3 +6,7 @@
 		mov $201, %rax
 		mov \input, %rdi 
 	.endm
+.section .text
+.global start
+start:
+	
