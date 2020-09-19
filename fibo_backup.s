@@ -17,12 +17,19 @@ start:
 	jmp other #그외 점프
 
 first:
+	mov $0, %rdx
+	mov $0, %rcx
 	mov $0, %rax
+	add %rdx, %rax
+	add %rcx, %rax
+	mov %rdi, %rcx
 	jmp _cmp
 
 second:
+	mov $0, %rdx
 	mov $1, %rcx
 	mov $0, %rax
+	add %rdx, %rax
 	add %rcx, %rax
 	mov %rcx, %rdx #Fn_0 = Fn_1
 	mov %rdi, %rcx #카운트
