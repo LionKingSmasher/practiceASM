@@ -3,30 +3,40 @@
 #include <inttypes.h>
 
 int64_t fibo(int64_t);
+int64_t old_fibo(int64_t);
 int64_t fibo_c(int64_t input);
 
 int main(){
 	int input;
-	scanf("%d", &input);
+	scanf("%d", &input);	
+	clock_t start_asm_1 = clock();
+	printf("오류 발생 대비용 %ld\n", fibo(input));
+	clock_t end_asm_1 = clock();
+	printf("==========================================================\n");
 	clock_t start_asm = clock();
-	printf("ASM: %d\n", fibo(input));
+	printf("ASM: %ld\n", fibo(input));
 	clock_t end_asm = clock();
-	float res_asm = (float)(end_asm - start_asm)/CLOCKS_PER_SEC;
+	float res_asm = (double)(end_asm - start_asm)/CLOCKS_PER_SEC;
+	clock_t start_asm_old = clock();
+	printf("ASM(OLD): %ld\n", old_fibo(input));
+	clock_t end_asm_old = clock();
+	float res_asm_old = (double)(end_asm_old - start_asm_old)/CLOCKS_PER_SEC;
 	clock_t start_c = clock(); 
-	printf("C: %d\n", fibo_c(input));
+	printf("C: %ld\n", fibo_c(input));
 	clock_t end_c = clock();
-	float res_c = (float)(end_c - start_c)/CLOCKS_PER_SEC;
+	float res_c = (double)(end_c - start_c)/CLOCKS_PER_SEC;
 	printf("========================시간 측정 결과========================\n");
-	printf("ASM: %f\n", res_asm);
-	printf("C: %f\n", res_c);
+	printf("ASM: %.10f\n", res_asm);
+	printf("ASM(OLD): %.10f\n", res_asm_old);
+	printf("C: %.10f\n", res_c);
 	printf("==============================================================\n");
 }
 
 int64_t fibo_c(int64_t input){
-	int Fn_0;
-	int Fn_1;
-	int Fn_2;
-	for(int i=0; i<input; i++){
+	int64_t Fn_0;
+	int64_t Fn_1;
+	int64_t Fn_2;
+	for(int64_t i=0; i<input; i++){
 		if(i==0){
 			Fn_2 = 0;
 		}
